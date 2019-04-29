@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Issue Tracker</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Handlee" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="./public/style.css">
+  </head>
+  <body>
+    <div id="container">
+      <h1>Issue Tracker</h1>
+      
+      <div class="wrapper">
+        <h2>Description</h2>
+        <p>As projects grow in size and complexity, it’s a good idea to look into issue tracking systems. Issue tracking systems help to ensure that all issues are resolved in a timely manner.</p>
+        <h3>Features of this Issue Tracker</h3>
+        <ul>
+          <li>submit issue</li>
+          <li>update issue</li>
+          <li>delete issue</li>
+          <li>retrieve issues</li>
+        </ul>
+      </div>
+      
+      <div class="wrapper">
+        <h2>Submit issue on <i>apitest</i></h2>
+        <form id="testForm">
+          <input type="text" name="issue_title" placeholder="*Title" required>
+          <textarea type="text" name="issue_text" placeholder="*Text" required></textarea>
+          <input type="text" name="created_by" placeholder="*Created by" required>
+          <input type="text" name="assigned_to" placeholder="(opt)Assigned to">
+          <input type="text" name="status_text" placeholder="(opt)Status text">
+          <input id="submit-issue" class="button" type="submit" value="Submit Issue">
+        </form>
+      </div>
+      
+      <div class="wrapper">
+        <h2>Update issue on <i>apitest</i></h2>
+        <form id="testForm2">
+          <input type="text" name="_id" placeholder="*_id" required>
+          <input type="text" name="issue_title" placeholder="(opt)Title">
+          <textarea type="text" name="issue_text" placeholder="(opt)Text"></textarea>
+          <input type="text" name="created_by" placeholder="(opt)Created by">
+          <input type="text" name="assigned_to" placeholder="(opt)Assigned to">
+          <input type="text" name="status_text" placeholder="(opt)Status text">
+          <label><input type="checkbox" name="open"> Check to close issue</label>
+          <input id="update-issue" class="button" type="submit" value="Update Issue">
+        </form>
+      </div>  
+      
+      <div class="wrapper">
+        <h2>Delete issue on <i>apitest</i></h2>
+        <form id="testForm3">
+          <input type="text" name="_id" placeholder="_id" required>
+          <input id="delete-issue" class="button" type="submit" value="Delete Issue">
+        </form>
+      </div>  
+      
+      <div class="wrapper">     
+        <h2 id="retrieve">Retrieve issues on <i>apitest</i></h2>
+        <h3>API call</h3>
+        <span>/api/issues/{project}[&_id][&issue_title][&issue_text][&created_by][&assigned_to][&status_text][&created_on][&updated_on][&open]</span>
+        <p class="small">{ } = required, [ ] = optional</p>
+        <h3>Example Usage</h3>
+        <span><a href="https://observant-coriander.glitch.me/api/issues/apitest">/api/issues/apitest</a></span>
+        <span><a href="https://observant-coriander.glitch.me/api/issues/apitest?open=true&assigned_to=Joe">/api/issues/apitest?open=true&amp;assigned_to=Joe</a></span>
+        <h3>Example Output</h3>
+        <span>[{"_id":"5871dda29faedc3491ff93bb","issue_title":"Fix error in posting data","issue_text":"When we post data it has an error.","created_on":"2017-01-08T06:35:14.240Z","updated_on":"2017-01-08T06:35:14.240Z","created_by":"Joe","assigned_to":"Joe","open":true,"status_text":"In QA"},...]</span>
+        <h3><a href="/apitest/">Or just click this link to go to <i>/apitest/</i> project issues</a></h3>
+      </div>
+      
+      <span id="jsonResult"></span>
+      
+    </div>
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"
+            integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
+            crossorigin="anonymous"></script>
+    <script>
+      $(function() {
+        $('#testForm').submit(function(e) {
+          $.ajax({
+            url: '/api/issues/apitest',
+            type: 'post',
+            data: $('#testForm').serialize(),
+            success: function(data) {
+              $('#jsonResult').text(JSON.stringify(data));
+            }
+          });
+          e.preventDefault();
+        });
+        $('#testForm2').submit(function(e) {
+          $.ajax({
+            url: '/api/issues/apitest',
+            type: 'put',
+            data: $('#testForm2').serialize(),
+            success: function(data) {
+              $('#jsonResult').text(JSON.stringify(data));
+            }
+          });
+          e.preventDefault();
+        });
+        $('#testForm3').submit(function(e) {
+          $.ajax({
+            url: '/api/issues/apitest',
+            type: 'delete',
+            data: $('#testForm3').serialize(),
+            success: function(data) {
+              $('#jsonResult').text(JSON.stringify(data));
+            }
+          });
+          e.preventDefault();
+        });
+      });
+   </script>
+  </body>
+</html>

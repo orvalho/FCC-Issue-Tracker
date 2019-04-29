@@ -1,0 +1,118 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+	font-family: 'Handlee', cursive;
+	font-size: 18px;
+	background-color: #F8F8B5;
+	text-align: center;
+  padding: 10px;
+}
+
+#container {
+	margin-top: 40px;
+  margin-bottom: 80px;
+}
+
+.wrapper {
+  width: 90%;
+  max-width: 750px;
+  margin: 25px auto;
+  padding: 20px 10px;
+  background-color: #B5DBF8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h2 {
+  margin-bottom: 10px;
+}
+
+h3 {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+span {
+  font-size: 15px;
+  font-family: monospace;
+  background-color: #F8F8B5;
+  display: inline-block;
+  word-break: break-all;
+  margin-bottom: 5px;
+}
+
+input, textarea {
+  width: 250px;
+  height: 30px;
+  background-color: #F8F8B5;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  font-family: 'Handlee', cursive;
+  margin-bottom: 5px;
+}
+
+ul {
+  text-align: left;
+  width: 200px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button {
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+label {
+  font-size: 15px;
+  align-self: flex-start;
+}
+
+input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+}
+
+.small {
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.issue {
+  margin: 20px;
+  padding: 5px;
+  border: 2px solid #B5DBF8;
+  border-radius: 5px;
+  width: 300px;
+  background: #B5DBF8;
+}
+
+.closed {
+  background-color: #F8F8B5;
+}
+
+#issueDisplay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 15px;
+}
+
+.closeIssue, .deleteIssue {
+ font-weight: 900;
+}
